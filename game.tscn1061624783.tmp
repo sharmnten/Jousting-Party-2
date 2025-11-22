@@ -1,0 +1,74 @@
+[gd_scene load_steps=10 format=3 uid="uid://x1nwvtoms36r"]
+
+[ext_resource type="Script" uid="uid://bpyq0akoylv1" path="res://Scripts/player.gd" id="1_80nbo"]
+[ext_resource type="Script" uid="uid://ds50yns0yxmbl" path="res://Scripts/wall.gd" id="1_feb5d"]
+[ext_resource type="Texture2D" uid="uid://cxkkovwhx3duw" path="res://Sprites/bird.png" id="2_e2o6t"]
+[ext_resource type="Texture2D" uid="uid://bqsxjepvlajk7" path="res://Sprites/wall.png" id="2_fc0e3"]
+[ext_resource type="Script" uid="uid://d38kk8e7dimhn" path="res://Scripts/ceiling.gd" id="5_7jktm"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_e2o6t"]
+a = Vector2(-1, 609)
+b = Vector2(-1, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e2o6t"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_feb5d"]
+distance = -609.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_feb5d"]
+size = Vector2(1133, 20)
+
+[node name="Game" type="Node2D"]
+
+[node name="Left Wall" type="Area2D" parent="."]
+position = Vector2(20, 0)
+script = ExtResource("1_feb5d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left Wall"]
+shape = SubResource("SegmentShape2D_e2o6t")
+
+[node name="Sprite2D" type="Sprite2D" parent="Left Wall"]
+position = Vector2(-1.0000005, 358)
+scale = Vector2(0.15, 40)
+texture = ExtResource("2_fc0e3")
+
+[node name="Player" type="CharacterBody2D" parent="." groups=["player"]]
+position = Vector2(103.00001, 88)
+scale = Vector2(1.5, 1.5)
+script = ExtResource("1_80nbo")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+texture = ExtResource("2_e2o6t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("RectangleShape2D_e2o6t")
+
+[node name="Right Wall" type="Area2D" parent="."]
+script = ExtResource("1_feb5d")
+
+[node name="Sprite2D" type="Sprite2D" parent="Right Wall"]
+position = Vector2(1131, 358)
+scale = Vector2(0.15, 40)
+texture = ExtResource("2_fc0e3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right Wall"]
+position = Vector2(1132, 0)
+shape = SubResource("SegmentShape2D_e2o6t")
+
+[node name="Ground" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+shape = SubResource("WorldBoundaryShape2D_feb5d")
+
+[node name="Ceiling" type="Area2D" parent="."]
+script = ExtResource("5_7jktm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ceiling"]
+position = Vector2(566.5, 40)
+shape = SubResource("RectangleShape2D_feb5d")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ceiling"]
+
+[connection signal="body_entered" from="Left Wall" to="Left Wall" method="_on_body_entered"]
+[connection signal="body_entered" from="Right Wall" to="Right Wall" method="_on_body_entered"]
+[connection signal="body_entered" from="Ceiling" to="Left Wall" method="_on_ceiling_body_entered"]
