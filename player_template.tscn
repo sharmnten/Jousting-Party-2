@@ -1,10 +1,11 @@
-[gd_scene load_steps=60 format=3 uid="uid://rrg7dehr5mo2"]
+[gd_scene format=3 uid="uid://rrg7dehr5mo2"]
 
 [ext_resource type="Script" uid="uid://hnh0d7my3tyg" path="res://Scripts/player_template.gd" id="1_503ot"]
 [ext_resource type="Texture2D" uid="uid://cxkkovwhx3duw" path="res://Sprites/bird.png" id="2_ktumr"]
 [ext_resource type="Texture2D" uid="uid://civrt6bpg6uo3" path="res://Sprites/pig.png" id="3_t7g56"]
 [ext_resource type="Texture2D" uid="uid://dns24u2w4u7i1" path="res://Sprites/Keyboard Letters and Symbols.png" id="4_ha1oa"]
 [ext_resource type="Texture2D" uid="uid://blde5mba70xi0" path="res://Sprites/jelly.png" id="4_ktumr"]
+[ext_resource type="Texture2D" uid="uid://cptsmy0q8rj58" path="res://Sprites/unicorn.png" id="5_t7g56"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_stjwj"]
 animations = [{
@@ -17,8 +18,11 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("4_ktumr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_t7g56")
 }],
-"loop": true,
+"loop": 1,
 "name": &"default",
 "speed": 5.0
 }]
@@ -390,17 +394,18 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_je3dg")
 }],
-"loop": true,
+"loop": 1,
 "name": &"default",
 "speed": 5.0
 }]
 
-[node name="PlayerTemplate" type="Node2D"]
+[node name="PlayerTemplate" type="Node2D" unique_id=1703612530]
+scale = Vector2(3, 3)
 script = ExtResource("1_503ot")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1950621160]
 sprite_frames = SubResource("SpriteFrames_stjwj")
 
-[node name="Key" type="AnimatedSprite2D" parent="."]
+[node name="Key" type="AnimatedSprite2D" parent="." unique_id=1905825167]
 position = Vector2(10, 12)
 sprite_frames = SubResource("SpriteFrames_jwpdy")

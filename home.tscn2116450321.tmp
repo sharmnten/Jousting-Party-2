@@ -14,5 +14,4 @@ offset_bottom = 531.0
 text = "Start!"
 script = ExtResource("2_1ey7h")
 
-[connection signal="pressed" from="Button" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

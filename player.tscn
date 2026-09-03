@@ -1,0 +1,96 @@
+[gd_scene format=3 uid="uid://cwryh4ylrwh2x"]
+
+[ext_resource type="Script" uid="uid://bpyq0akoylv1" path="res://Scripts/player.gd" id="1_hqtel"]
+[ext_resource type="Texture2D" uid="uid://cxkkovwhx3duw" path="res://Sprites/bird.png" id="2_sweqy"]
+[ext_resource type="Texture2D" uid="uid://dqi53647boeh0" path="res://Sprites/HealthUI.png" id="3_2hs0m"]
+[ext_resource type="FontFile" uid="uid://c1srve04iv0j1" path="res://PixelifySans-VariableFont_wght.ttf" id="4_1jxqw"]
+[ext_resource type="Texture2D" uid="uid://civrt6bpg6uo3" path="res://Sprites/pig.png" id="5_1jxqw"]
+[ext_resource type="Texture2D" uid="uid://blde5mba70xi0" path="res://Sprites/jelly.png" id="6_dw050"]
+[ext_resource type="Texture2D" uid="uid://cptsmy0q8rj58" path="res://Sprites/unicorn.png" id="7_b26j0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e2o6t"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hve3p"]
+atlas = ExtResource("3_2hs0m")
+region = Rect2(0, 0, 33, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mfdv2"]
+atlas = ExtResource("3_2hs0m")
+region = Rect2(0, 22, 33, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iotsf"]
+atlas = ExtResource("3_2hs0m")
+region = Rect2(0, 44, 33, 11)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oivnn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hve3p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mfdv2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iotsf")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n7ghd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_sweqy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_1jxqw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_dw050")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_b26j0")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Player" type="CharacterBody2D" unique_id=118573047 groups=["player"]]
+scale = Vector2(3, 3)
+script = ExtResource("1_hqtel")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=518238745]
+shape = SubResource("RectangleShape2D_e2o6t")
+
+[node name="TimeText" type="Label" parent="." unique_id=1694640773]
+offset_left = -19.33334
+offset_top = -33.333336
+offset_right = 20.66666
+offset_bottom = -10.333336
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Timer" type="Timer" parent="." unique_id=449528822]
+
+[node name="Healthbar" type="AnimatedSprite2D" parent="." unique_id=337008410]
+visible = false
+position = Vector2(1.3333309, -15)
+sprite_frames = SubResource("SpriteFrames_oivnn")
+
+[node name="TimerText" type="Label" parent="." unique_id=664563858]
+offset_left = -19.0
+offset_top = -43.666668
+offset_right = 21.0
+offset_bottom = -20.666668
+theme_override_fonts/font = ExtResource("4_1jxqw")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2110582429]
+sprite_frames = SubResource("SpriteFrames_n7ghd")

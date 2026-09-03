@@ -1,15 +1,12 @@
-[gd_scene load_steps=15 format=3 uid="uid://x1nwvtoms36r"]
+[gd_scene format=3 uid="uid://x1nwvtoms36r"]
 
-[ext_resource type="Script" uid="uid://bpyq0akoylv1" path="res://Scripts/player.gd" id="1_80nbo"]
 [ext_resource type="Script" uid="uid://ds50yns0yxmbl" path="res://Scripts/wall.gd" id="1_feb5d"]
-[ext_resource type="Texture2D" uid="uid://cxkkovwhx3duw" path="res://Sprites/bird.png" id="2_e2o6t"]
+[ext_resource type="Script" uid="uid://cp71lwio4sd1y" path="res://Scripts/game.gd" id="1_mfdv2"]
 [ext_resource type="Texture2D" uid="uid://bqsxjepvlajk7" path="res://Sprites/wall.png" id="2_fc0e3"]
-[ext_resource type="Texture2D" uid="uid://civrt6bpg6uo3" path="res://Sprites/pig.png" id="3_ryrav"]
+[ext_resource type="FontFile" uid="uid://c1srve04iv0j1" path="res://PixelifySans-VariableFont_wght.ttf" id="4_hve3p"]
 [ext_resource type="Script" uid="uid://d38kk8e7dimhn" path="res://Scripts/ceiling.gd" id="5_7jktm"]
 [ext_resource type="Texture2D" uid="uid://cre011btnjvjq" path="res://Sprites/dirt.png" id="6_eow3j"]
 [ext_resource type="Script" uid="uid://b3wdwobpes4b2" path="res://Scripts/ground.gd" id="6_j5wjh"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_e2o6t"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_e2o6t"]
 a = Vector2(-1, 609)
@@ -23,104 +20,100 @@ size = Vector2(1133, 20)
 
 [sub_resource type="Gradient" id="Gradient_j5wjh"]
 offsets = PackedFloat32Array(0, 0.006666667)
-colors = PackedColorArray(0, 0, 0, 1, 0.6156863, 0.03529412, 0, 1)
+colors = PackedColorArray(0.6156863, 0.03529412, 0, 1, 0.6156863, 0.03529412, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_vef74"]
 gradient = SubResource("Gradient_j5wjh")
 fill_to = Vector2(0.014018691, 0)
 
-[node name="Game" type="Node2D"]
+[node name="Game" type="Node2D" unique_id=1388620181]
+script = ExtResource("1_mfdv2")
 
-[node name="Player" type="CharacterBody2D" parent="." groups=["player"]]
-position = Vector2(103.00001, 88)
-scale = Vector2(3, 3)
-script = ExtResource("1_80nbo")
-
-[node name="Sprite2D" type="Sprite2D" parent="Player"]
-texture = ExtResource("2_e2o6t")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-shape = SubResource("RectangleShape2D_e2o6t")
-
-[node name="TimeText" type="Label" parent="Player"]
-offset_left = -19.33334
-offset_top = -33.333336
-offset_right = 20.66666
-offset_bottom = -10.333336
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Timer" type="Timer" parent="Player"]
-
-[node name="Player2" type="CharacterBody2D" parent="." groups=["player"]]
-position = Vector2(493, 187)
-scale = Vector2(5, 5)
-script = ExtResource("1_80nbo")
-key = "k"
-
-[node name="Sprite2D" type="Sprite2D" parent="Player2"]
-texture = ExtResource("3_ryrav")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player2"]
-shape = SubResource("RectangleShape2D_e2o6t")
-
-[node name="TimeText" type="Label" parent="Player2"]
-offset_left = -19.33334
-offset_top = -33.333336
-offset_right = 20.66666
-offset_bottom = -10.333336
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Timer" type="Timer" parent="Player2"]
-
-[node name="Left Wall" type="Area2D" parent="."]
+[node name="Left Wall" type="Area2D" parent="." unique_id=1594533024]
 position = Vector2(20, 0)
 script = ExtResource("1_feb5d")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Left Wall"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left Wall" unique_id=1820914091]
 shape = SubResource("SegmentShape2D_e2o6t")
 
-[node name="Sprite2D" type="Sprite2D" parent="Left Wall"]
+[node name="Sprite2D" type="Sprite2D" parent="Left Wall" unique_id=1509482860]
 position = Vector2(-1.0000005, 358)
 scale = Vector2(0.15, 40)
 texture = ExtResource("2_fc0e3")
 
-[node name="Right Wall" type="Area2D" parent="."]
+[node name="Right Wall" type="Area2D" parent="." unique_id=2142344373]
 script = ExtResource("1_feb5d")
 
-[node name="Sprite2D" type="Sprite2D" parent="Right Wall"]
+[node name="Sprite2D" type="Sprite2D" parent="Right Wall" unique_id=1189195157]
 position = Vector2(1131, 358)
 scale = Vector2(0.15, 40)
 texture = ExtResource("2_fc0e3")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Right Wall"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right Wall" unique_id=1593976242]
 position = Vector2(1132, 0)
 shape = SubResource("SegmentShape2D_e2o6t")
 
-[node name="Ground" type="StaticBody2D" parent="." groups=["ground"]]
+[node name="Ground" type="StaticBody2D" parent="." unique_id=357746405 groups=["ground"]]
 script = ExtResource("6_j5wjh")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" unique_id=506450700]
 shape = SubResource("WorldBoundaryShape2D_feb5d")
 
-[node name="Sprite2D" type="Sprite2D" parent="Ground"]
+[node name="Sprite2D" type="Sprite2D" parent="Ground" unique_id=820327446]
 position = Vector2(580, 631.5)
 scale = Vector2(59.12, 2.4000099)
 texture = ExtResource("6_eow3j")
 
-[node name="Ceiling" type="Area2D" parent="."]
+[node name="Ceiling" type="Area2D" parent="." unique_id=1167217852]
 script = ExtResource("5_7jktm")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ceiling"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ceiling" unique_id=1795676906]
 position = Vector2(566.5, 40)
 shape = SubResource("RectangleShape2D_feb5d")
 
-[node name="Sprite2D" type="Sprite2D" parent="Ceiling"]
+[node name="Sprite2D" type="Sprite2D" parent="Ceiling" unique_id=147721525]
 position = Vector2(578, 21)
 scale = Vector2(18.0625, 1)
 texture = SubResource("GradientTexture2D_vef74")
 
+[node name="Control" type="Control" parent="." unique_id=626043515]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Gameover" type="Label" parent="Control" unique_id=1973708278]
+layout_mode = 0
+offset_left = 440.0
+offset_top = 268.0
+offset_right = 694.0
+offset_bottom = 327.0
+theme_override_fonts/font = ExtResource("4_hve3p")
+theme_override_font_sizes/font_size = 48
+text = "Game Over!"
+
+[node name="Restart" type="Button" parent="Control" unique_id=756858387]
+layout_mode = 0
+offset_left = 664.0
+offset_top = 340.0
+offset_right = 729.0
+offset_bottom = 371.0
+theme_override_fonts/font = ExtResource("4_hve3p")
+text = "Restart"
+
+[node name="Back" type="Button" parent="Control" unique_id=1749651289]
+layout_mode = 0
+offset_left = 412.0
+offset_top = 340.0
+offset_right = 457.0
+offset_bottom = 371.0
+theme_override_fonts/font = ExtResource("4_hve3p")
+text = "Back"
+
 [connection signal="body_entered" from="Left Wall" to="Left Wall" method="_on_body_entered"]
 [connection signal="body_entered" from="Right Wall" to="Right Wall" method="_on_body_entered"]
 [connection signal="body_entered" from="Ceiling" to="Ceiling" method="_on_body_entered"]
+[connection signal="pressed" from="Control/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="Control/Back" to="." method="_on_back_pressed"]
