@@ -1,0 +1,39 @@
+name: Deploy to Web
+
+on:
+  push:
+    branches: [ "main" ]
+
+  workflow_dispatch:
+
+env:
+  GODOT_VERSION: 4.7
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: barichello/godot-ci:4.3
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup
+        run: |
+          mkdir -v -p ~/.local/share/godot/export_templates/
+          mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable \
+            ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
+
+      - name: Web Build
+        run: |
+          mkdir -v -p build/web
+          godot --headless --verbose --export-release "Web" "build/web/index.html"
+
+      - name: Install AzCopy
+        run: |
+          wget -O azcopy_v10.tar.gz https://aka.ms/downloadazcopy-v10-linux \
+            && tar -xf azcopy_v10.tar.gz --strip-components=1
+
+      - name: Deploy
+        run: |
+          ./azcopy sync "build/web" "${{ secrets.SAS_URL }}"
