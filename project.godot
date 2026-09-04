@@ -23,6 +23,10 @@ config/icon="res://icon.svg"
 
 GameState="*uid://bnyax8q7eol4j"
 
+[display]
+
+window/stretch/mode="canvas_items"
+
 [input]
 
 q={
