@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="Jousting Party"
-run/main_scene="uid://x1nwvtoms36r"
+run/main_scene="uid://d03yemnbs3m7q"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
